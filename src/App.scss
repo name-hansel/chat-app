@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&family=Raleway:wght@500&display=swap");
+
+$heading: "Raleway", sans-serif;
+$normal: "PT Sans", sans-serif;
+
+$dark: #1d8394;
+$regular: #95b0b6;
+$light: white;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: $normal;
+}
+
+h1,
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none; /* no underline */
+}
+
+body {
+  background-color: $regular;
+  width: 100%;
+}
+
+.join-container {
+  background-color: $light;
+  padding: 1rem;
+  width: 75%;
+  max-width: 20rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.heading {
+  color: $dark;
+  margin: 0 0.5rem;
+}
+
+.join-form {
+  // border: 1px solid red;
+  margin: 0 0.5rem;
+}
+
+.join-form-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.join-form-div > label {
+  margin: 0.4rem 0.1rem;
+  color: $dark;
+}
+
+.join-form-input {
+  margin: 0.2rem 0.1rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid $dark;
+  outline: none;
+  padding: 0.1rem;
+}
+
+.btn {
+  margin: 1rem 0.5rem 0.3rem 0.5rem;
+  padding: 0.5rem;
+  width: 5rem;
+  font-family: $heading;
+  font-size: 0.8rem;
+  background-color: $dark;
+  color: $light;
+  outline: none;
+  border: none;
+  border-radius: 0.4rem;
+  align-self: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+// **********
+// Chat window
+.chat-body {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sidebar {
+  padding: 2rem 0.7rem;
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(149, 176, 182, 0.6);
+  text-align: center;
+}
+
+.sidebar-heading {
+  font-size: 2.2rem;
+  color: $light;
+}
+
+.users-heading {
+  margin: 2rem auto 1.5rem auto;
+  padding-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-family: $heading;
+  color: $light;
+  border-bottom: 1px solid $light;
+}
+
+.users-list {
+  list-style: none;
+}
+
+.users {
+  margin: 1rem auto;
+  background-color: $light;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  text-align: center;
+}
+
+.user {
+  color: $regular;
+  font-size: 1.2rem;
+}
+
+.leave-room {
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 8rem;
+  background-color: $light;
+  outline: none;
+  border: none;
+  border-radius: 0.4rem;
+  align-self: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+.leave-room > a {
+  color: $dark;
+  font-family: $heading;
+  font-size: 0.8rem;
+}
+
+.chat-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 18%;
+  background-color: $light;
+}
+
+// Message form
+
+.message-form {
+  position: fixed;
+  bottom: 0;
+  left: 18%;
+  right: 0;
+  margin: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // margin: 1rem 3rem;
+}
+
+.message-input {
+  width: 90%;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid $dark;
+  outline: none;
+  padding: 0.2rem 0.4rem;
+}
+
+.message-btn {
+  margin: 1rem;
+  margin-right: 0;
+  padding: 0.5rem;
+  width: 6rem;
+  font-family: $heading;
+  font-size: 0.8rem;
+  background-color: $dark;
+  color: $light;
+  outline: none;
+  border: none;
+  border-radius: 0.4rem;
+  align-self: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+// Message container
+.message-container {
+  // position: relative;
+  overflow: auto;
+  background-color: rgba($regular, 0.6);
+  border-radius: 0.4rem;
+  margin: 3rem;
+  height: 80%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+// Individual message div
+.message-div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.room-message-div {
+  align-self: center;
+  margin: 0.8rem 0;
+  color: rgba($light, 0.9);
+}
+
+.message-info {
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  color: $light;
+}
+
+.message-time {
+  font-size: 0.6rem;
+  margin-left: 0.5rem;
+}
+
+.message {
+  background-color: rgba($dark, 0.8);
+  color: $light;
+  border-radius: 0.4rem;
+  padding: 1rem 1.2rem;
+  margin: 0 1rem;
+  align-self: flex-start;
+}
+
+.message-div .user-sent {
+  align-self: flex-end;
+}
+
+.message-info-user-sent {
+  color: $dark;
+}
+
+.message-user-sent {
+  background-color: rgba($light, 0.9) !important;
+  color: $dark;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import { SocketContext } from "../context/socket";
@@ -9,14 +9,10 @@ import { joinRoom } from "../context/actions/user";
 const Landing = ({ history }: RouteComponentProps) => {
   const [username, setUsername] = useState("");
   const [roomName, setRoomName] = useState("");
-  const usernameInput = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState("");
 
   const socket = useContext(SocketContext);
   const { userDispatch } = useContext(UserContext);
-
-  useEffect(() => {
-    if (usernameInput.current) usernameInput.current.focus();
-  }, []);
 
   useEffect(() => {
     socket.connect();
@@ -29,9 +25,22 @@ const Landing = ({ history }: RouteComponentProps) => {
       roomName !== "" &&
       roomName !== " "
     ) {
-      // Dispatch action 'JOIN_ROOM'
-      joinRoom(userDispatch, username, roomName);
-      history.push(`/room/${roomName}`);
+      socket.emit(
+        "username-join",
+        username,
+        roomName,
+        (response: { status: boolean }) => {
+          if (response.status) {
+            // Dispatch action 'JOIN_ROOM'
+            joinRoom(userDispatch, username, roomName);
+            history.push(`/room/${roomName}`);
+          } else {
+            setError(
+              "This username already exists in the room. Please choose another."
+            );
+          }
+        }
+      );
     }
   };
 
@@ -54,8 +63,9 @@ const Landing = ({ history }: RouteComponentProps) => {
               className="join-form-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              ref={usernameInput}
+              onFocus={(e) => setError("")}
             />
+            <p style={{ color: "red" }}>{error}</p>
           </div>
           <div className="join-form-div">
             <label htmlFor="room-name">Enter name of the room</label>

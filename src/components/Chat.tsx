@@ -11,6 +11,7 @@ const Chat = () => {
   if (input.current) input.current.focus();
 
   const socket = useContext(SocketContext);
+
   const {
     userState: { username },
   } = useContext(UserContext);

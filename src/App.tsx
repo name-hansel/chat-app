@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Landing from "./components/Landing";
@@ -12,10 +12,17 @@ import RoomRoute from "./components/RoomRoute";
 
 const App = () => {
   const [userState, userDispatch] = useReducer(userReducer, initialState);
+  const [connection, setConnection] = useState(true);
   const userContextValues = {
     userState,
     userDispatch,
   };
+
+  useEffect(() => {
+    socket.on("connect_error", () => {
+      setConnection(false);
+    });
+  }, []);
 
   return (
     <Router>
@@ -23,7 +30,7 @@ const App = () => {
         <UserContextProvider value={userContextValues}>
           <Switch>
             <Route exact path="/">
-              <Landing />
+              <Landing connection={connection} />
             </Route>
             <Route path="/room/:roomName">
               <RoomRoute component={Room} />

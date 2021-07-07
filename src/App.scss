@@ -267,3 +267,21 @@ body {
   background-color: rgba($light, 0.9) !important;
   color: $dark;
 }
+
+.room-div {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.room-item-heading {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -1rem;
+  color: $dark;
+}
+
+.room-item {
+  display: flex;
+  color: rgba($dark, 0.8);
+  justify-content: space-between;
+}
